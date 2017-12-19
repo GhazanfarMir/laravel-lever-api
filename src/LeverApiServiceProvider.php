@@ -4,6 +4,7 @@ namespace GhazanfarMir\Lever\Api;
 
 
 use Illuminate\Support\ServiceProvider;
+use GhazanfarMir\Lever\Api\Client as LeverClient;
 
 class LeverApiServiceProvider extends ServiceProvider
 {
@@ -19,7 +20,11 @@ class LeverApiServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('leverapi', function ($app) {
 
+            return new LeverClient();
+
+        });
     }
 
     /**
