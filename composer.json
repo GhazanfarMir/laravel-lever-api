@@ -1,0 +1,40 @@
+{
+    "name": "ghazanfarmir/laravel-lever-api",
+    "description": "Laravel Package to retrieve jobs from Lever for specified employer",
+    "type": "Package",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "GhazanfarMir\\Lever\\Api\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GhazanfarMir\\Lever\\Api\\Tests\\": "tests/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ghazanfar Mir",
+            "email": "GhazanfarMir@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GhazanfarMir\\Lever\\Api\\LeverApiServiceProvider"
+            ],
+            "aliases": {
+                "LeverApi": "GhazanfarMir\\Lever\\Api\\Facades\\LeverApi"
+            }
+        }
+    }
+}
