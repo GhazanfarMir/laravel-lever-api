@@ -90,9 +90,15 @@ class Client
     /**
      * @param $params
      * @return string
+     * @throws \Exception
      */
     public function buildUrl($params)
     {
+
+        if(empty($this->site))
+        {
+            throw new \Exception('Error: no employer/site is configured for Lever Api..');
+        }
 
         $url = $this->base . $this->site;
 
