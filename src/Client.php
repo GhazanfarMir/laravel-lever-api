@@ -43,15 +43,9 @@ class Client
 
     /**
      * Client constructor.
-     * @param $site
      */
-    public function __construct($site = null)
+    public function __construct()
     {
-        if (!empty($site))
-        {
-            $this->site = $site;
-        }
-
         $this->httpClient = new GuzzleHttp\Client();
     }
 
@@ -63,6 +57,14 @@ class Client
     public function get($params = null)
     {
         return $this->request('GET', $params);
+    }
+
+    /**
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
+    public function getJson()
+    {
+        return json_decode($this->request('GET', ['mode' => 'json']));
     }
 
     /**
@@ -95,8 +97,7 @@ class Client
     public function buildUrl($params)
     {
 
-        if(empty($this->site))
-        {
+        if (empty($this->site)) {
             throw new \Exception('Error: no employer/site is configured for Lever Api..');
         }
 
