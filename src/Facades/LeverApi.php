@@ -13,6 +13,6 @@ class LeverApi extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'LeverApi';
+        return 'leverapi';
     }
 }
