@@ -16,6 +16,22 @@ class Client
     protected $site;
 
     /**
+     * @return mixed
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param mixed $site
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+    }
+
+    /**
      * @var string
      */
     protected $base = 'https://api.lever.co/v0/postings/';
@@ -29,12 +45,16 @@ class Client
      * Client constructor.
      * @param $site
      */
-    public function __construct($site)
+    public function __construct($site = null)
     {
-        $this->site = $site;
+        if (!empty($site))
+        {
+            $this->site = $site;
+        }
 
         $this->httpClient = new GuzzleHttp\Client();
     }
+
 
     /**
      * @param null $params
@@ -76,7 +96,7 @@ class Client
 
         $url = $this->base . $this->site;
 
-        $url .= isset($params)? ('/?' . http_build_query($params)):null;
+        $url .= isset($params) ? ('/?' . http_build_query($params)) : null;
 
         return $url;
 
