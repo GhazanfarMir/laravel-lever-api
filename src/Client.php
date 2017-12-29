@@ -16,6 +16,30 @@ class Client
     protected $site;
 
     /**
+     * @var string
+     */
+    protected $base = 'https://api.lever.co/v0/postings/';
+
+    /**
+     * @var
+     */
+    protected $httpClient;
+
+    /**
+     * Client constructor.
+     * @param null $site
+     */
+    public function __construct($site = null)
+    {
+
+        if (!empty($site)) {
+            $this->site = $site;
+        }
+
+        $this->httpClient = new GuzzleHttp\Client();
+    }
+
+    /**
      * @return mixed
      */
     public function getSite()
@@ -32,27 +56,9 @@ class Client
     }
 
     /**
-     * @var string
-     */
-    protected $base = 'https://api.lever.co/v0/postings/';
-
-    /**
-     * @var
-     */
-    protected $httpClient;
-
-    /**
-     * Client constructor.
-     */
-    public function __construct()
-    {
-        $this->httpClient = new GuzzleHttp\Client();
-    }
-
-
-    /**
      * @param null $params
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \Exception
      */
     public function get($params = null)
     {
@@ -61,10 +67,11 @@ class Client
 
     /**
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \Exception
      */
     public function getJson()
     {
-        return json_decode($this->request('GET', ['mode' => 'json']));
+        return $this->request('GET', ['mode' => 'json']);
     }
 
     /**
@@ -79,13 +86,16 @@ class Client
      * @param $method
      * @param $params
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \Exception
      */
     public function request($method, $params)
     {
 
         $url = $this->buildUrl($params);
 
-        return $this->httpClient->request($method, $url)->getBody();
+        $response = $this->httpClient->request($method, $url);
+
+        return $response->getBody();
 
     }
 
