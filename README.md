@@ -21,3 +21,10 @@ OR
 ```
 $jobs = json_decode(LeverApi::getJson()) // returns JSON
 ```
+
+## Questions
+Feel free to submit an issue if you have any issues.
+
+## License
+
+MIT License 2017 - Ghazanfar Mir
