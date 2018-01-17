@@ -1,5 +1,8 @@
 # Laravel Lever Api Package
 
+[![StyleCI](https://styleci.io/repos/114803807/shield?branch=master)](https://styleci.io/repos/114803807)
+
+
 This is the Laravel Package which can be used to retrieve jobs from Lever for a specified site/employer.
 
 ## Usage
