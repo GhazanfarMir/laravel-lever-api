@@ -5,8 +5,7 @@ namespace GhazanfarMir\Lever\Api;
 use GuzzleHttp;
 
 /**
- * Class Client
- * @package GhazanfarMir\Lever\Api
+ * Class Client.
  */
 class Client
 {
@@ -31,8 +30,7 @@ class Client
      */
     public function __construct($site = null)
     {
-
-        if (!empty($site)) {
+        if (! empty($site)) {
             $this->site = $site;
         }
 
@@ -90,13 +88,11 @@ class Client
      */
     public function request($method, $params)
     {
-
         $url = $this->buildUrl($params);
 
         $response = $this->httpClient->request($method, $url);
 
         return $response->getBody();
-
     }
 
     /**
@@ -106,16 +102,14 @@ class Client
      */
     public function buildUrl($params)
     {
-
         if (empty($this->site)) {
             throw new \Exception('Error: no employer/site is configured for Lever Api..');
         }
 
-        $url = $this->base . $this->site;
+        $url = $this->base.$this->site;
 
-        $url .= isset($params) ? ('/?' . http_build_query($params)) : null;
+        $url .= isset($params) ? ('/?'.http_build_query($params)) : null;
 
         return $url;
-
     }
 }
